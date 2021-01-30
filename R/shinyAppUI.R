@@ -3,30 +3,26 @@
 #' @param input provided by shiny
 #' @param output provided by shiny
 #'
-#'
-
-#Load library
-library(RMySQL)
-library(shinydashboard)
-library(DBI)
-library(DT)
-library(leaflet)
-library(leaflet.extras)
-library(shinyWidgets)
-library(chipPCR)
-library(shinyjs)
-library(tidyverse)
-library(readxl)
-library(plotly)
-library(reactable)
-library(writexl)
-library(xfun)
-library(berryFunctions)
-library(backports)
-library(vroom)
-library(htmltools)
-
-
+#' @import RMySQL
+#' @import shinydashboard
+#' @import DBI
+#' @import DT
+#' @import leaflet
+#' @import leaflet.extras
+#' @import shinyWidgets
+#' @import chipPCR
+#' @import shinyjs
+#' @import ggplot2
+#' @import dplyr
+#' @import readxl
+#' @import plotly
+#' @import reactable
+#' @import writexl
+#' @import xfun
+#' @import berryFunctions
+#' @import backports
+#' @import vroom
+#' @importFrom htmltools HTML
 
 
 
