@@ -20,7 +20,6 @@ Imports:
     DT,
     leaflet,
     leaflet.extras,
-    shinyWidgets,
     chipPCR,
     shinyjs,
     ggplot2,
@@ -34,4 +33,5 @@ Imports:
     backports,
     vroom,
     htmltools,
-    readr
+    readr,
+    shinyWidgets

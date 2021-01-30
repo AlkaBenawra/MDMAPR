@@ -13,11 +13,12 @@
 #' @import leaflet.extras
 #' @import shinyWidgets
 #' @import chipPCR
-#' @import shinyjs
+#' @importFrom shinyjs reset
+#' @importFrom shinyjs useShinyjs
+#' @importFrom shinyjs alert
 #' @import ggplot2
 #' @import dplyr
 #' @import readxl
-#' @import plotly
 #' @import reactable
 #' @import writexl
 #' @import xfun
@@ -25,8 +26,8 @@
 #' @import backports
 #' @import vroom
 #' @importFrom htmltools HTML
-#' @import readr
-
+#' @importFrom readr  read_csv
+#' @import plotly
 
 
 # CSS Modifications ---------------------------
@@ -554,7 +555,8 @@ shinyAppUI <- dashboardPage(
                   width = 12,
 
                   #Header for page
-                  h1("MDMAPR"),
+                  h1("MDMAPR", align = "Center",
+                     style = "font-size:30px;"),
 
                   br(),
 
