@@ -18,8 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of MDMAPR is to ...
-
+The MDMAPR application allows for the spatial visual of run qPCR sample collection locations to reveal species presence/absence patterns. 
 ## Installation
 
 You can install the released version of MDMAPR from [CRAN](https://CRAN.R-project.org) with:
