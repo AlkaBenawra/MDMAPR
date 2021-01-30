@@ -33,4 +33,5 @@ Imports:
     berryFunctions,
     backports,
     vroom,
-    htmltools
+    htmltools,
+    readr

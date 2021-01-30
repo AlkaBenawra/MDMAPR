@@ -6,7 +6,9 @@
 #' @import RMySQL
 #' @import shinydashboard
 #' @import DBI
-#' @import DT
+#' @importFrom DT dataTableOutput
+#' @importFrom DT renderDataTable
+#' @importFrom DT datatable
 #' @import leaflet
 #' @import leaflet.extras
 #' @import shinyWidgets
@@ -23,7 +25,7 @@
 #' @import backports
 #' @import vroom
 #' @importFrom htmltools HTML
-
+#' @import readr
 
 
 
@@ -552,7 +554,7 @@ shinyAppUI <- dashboardPage(
                   width = 12,
 
                   #Header for page
-                  div(img(src="mdmaprlogo3.png", width = 600), style="text-align: center;"),
+                  h1("MDMAPR"),
 
                   br(),
 
