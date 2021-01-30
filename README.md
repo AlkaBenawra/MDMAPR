@@ -7,9 +7,9 @@
 
 <!-- badges: end -->
 
-The MDMAPR application allows for the spatial visual of run qPCR sample
-collection locations to reveal species presence/absence patterns. \#\#
-Installation
+The MDMAPR application allows for the spatial visualization of run qPCR
+sample collection locations to reveal species presence/absence patterns.
+\#\# Installation
 
 You can install the released version of MDMAPR from
 [CRAN](https://CRAN.R-project.org) with:
@@ -24,32 +24,23 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(MDMAPR)
+#> Warning: replacing previous import 'berryFunctions::between' by 'dplyr::between'
+#> when loading 'MDMAPR'
+#> Warning: replacing previous import 'ggplot2::last_plot' by 'plotly::last_plot'
+#> when loading 'MDMAPR'
+#> Warning: replacing previous import 'shiny::dataTableOutput' by
+#> 'DT::dataTableOutput' when loading 'MDMAPR'
+#> Warning: replacing previous import 'shiny::renderDataTable' by
+#> 'DT::renderDataTable' when loading 'MDMAPR'
+#> Registered S3 methods overwritten by 'readr':
+#>   method           from 
+#>   format.col_spec  vroom
+#>   print.col_spec   vroom
+#>   print.collector  vroom
+#>   print.date_names vroom
+#>   print.locale     vroom
+#>   str.col_spec     vroom
+#> Warning: replacing previous import 'shinyWidgets::alert' by 'shinyjs::alert'
+#> when loading 'MDMAPR'
 ## basic example code
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
