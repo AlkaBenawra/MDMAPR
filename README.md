@@ -9,7 +9,8 @@
 
 The MDMAPR application allows for the spatial visualization of run qPCR
 sample collection locations to reveal species presence/absence patterns.
-\#\# Installation
+
+## Installation
 
 You can install the released version of MDMAPR from
 [CRAN](https://CRAN.R-project.org) with:
