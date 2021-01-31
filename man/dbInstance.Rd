@@ -4,7 +4,7 @@
 \alias{dbInstance}
 \title{Indicate whether MDMAPR is connected to database instance.}
 \usage{
-dbInstance(x)
+dbInstance("Yes")  or dbInstance("No")
 }
 \arguments{
 \item{x}{defines if you have a database connection or not}
@@ -17,8 +17,4 @@ Function to indicate if you are running MDMAPR with a database instance.
 }
 \details{
 dbInstance
-}
-\examples{
-"Yes" or "No"
-
 }
