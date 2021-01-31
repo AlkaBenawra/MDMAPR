@@ -18,7 +18,7 @@ shinyAppServer <- function(input, output, session) {
 
   #Running the MDMAPR 2.0 without a database connection: dbExists <- 'No'.
   #Running the MDMAPR 2.0 with a database connection: dbExists <- 'Yes'. (NOTE: Update the 'user', 'password', 'dbname', and 'host' variables in the dbConnect statement (line 44) to reference a specific database instance.)
-  dbExists <- 'No'
+  dbExists <-  db_int
 
   #MySQL connection to MDMAPR 2.0 Database
   if (dbExists == 'Yes') {

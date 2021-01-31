@@ -16,4 +16,7 @@ dbInstance <- function(x) {
   { db_int<<- "No"}
 }
 
+<<<<<<< HEAD
+=======
 dbExists <- db_int
+>>>>>>> d1dcaeb2d92c457e2b77e0d0144295c441b6817d

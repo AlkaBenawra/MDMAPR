@@ -1,4 +1,14 @@
-#' @name UI
+# CSS Modifications ---------------------------
+
+#Add horizontal scroll bar to datatable
+#Adapted from https://stackoverflow.com/questions/44674870/r-dt-horizontal-scroll-bar-at-top-of-the-table/49783457 (10/09/2020)
+
+css <- HTML("#flipped > .dataTables_wrapper.no-footer > .dataTables_scroll > .dataTables_scrollBody { transform:rotateX(180deg);
+    }
+    #flipped > .dataTables_wrapper.no-footer > .dataTables_scroll > .dataTables_scrollBody table{ transform:rotateX(180deg);
+    }")
+
+
 #' @title MDMAPR UI Function
 #' @param input provided by shiny
 #' @param output provided by shiny
@@ -29,19 +39,6 @@
 #' @importFrom readr  read_csv
 #' @import plotly
 #'
-
-
-# CSS Modifications ---------------------------
-
-#Add horizontal scroll bar to datatable
-#Adapted from https://stackoverflow.com/questions/44674870/r-dt-horizontal-scroll-bar-at-top-of-the-table/49783457 (10/09/2020)
-
-css <- HTML("#flipped > .dataTables_wrapper.no-footer > .dataTables_scroll > .dataTables_scrollBody { transform:rotateX(180deg);
-    }
-    #flipped > .dataTables_wrapper.no-footer > .dataTables_scroll > .dataTables_scrollBody table{ transform:rotateX(180deg);
-    }")
-
-
 
 # Define UI for application ---------------------------
 shinyAppUI <- dashboardPage(
