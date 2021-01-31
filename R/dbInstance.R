@@ -7,7 +7,7 @@
 #'
 #' @export
 #'
-#' @examples "Yes" or "No"
+#' @usage dbInstance("Yes")  or dbInstance("No")
 #'
 dbInstance <- function(x) {
   if (x == "Yes")
@@ -15,8 +15,3 @@ dbInstance <- function(x) {
   else
   { db_int<<- "No"}
 }
-
-<<<<<<< HEAD
-=======
-dbExists <- db_int
->>>>>>> d1dcaeb2d92c457e2b77e0d0144295c441b6817d
