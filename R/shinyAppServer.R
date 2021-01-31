@@ -24,7 +24,7 @@ shinyAppServer <- function(input, output, session) {
   if (dbExists == 'Yes') {
 
     #MySQL connection to MDMAPR Database
-    con <- dbConnect(MySQL(), user = "root", password = "Test123!", dbname = 'MDMap_3.0', host = "127.0.0.1")
+    con <- dbConnect(MySQL(), user = db_user, password = db_password, dbname = db_name, host = db_host)
 
     #Retrieving project table
     myQuery1 <- "select * from project_Table"

@@ -7,7 +7,7 @@
 #'
 #' @export
 #'
-#' @examples "Yes" or "No"
+#' @usage dbInstance("Yes")  or dbInstance("No")
 #'
 dbInstance <- function(x) {
   if (x == "Yes")
