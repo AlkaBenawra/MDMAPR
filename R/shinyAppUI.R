@@ -38,6 +38,7 @@ css <- HTML("#flipped > .dataTables_wrapper.no-footer > .dataTables_scroll > .da
 #' @importFrom htmltools HTML
 #' @importFrom readr  read_csv
 #' @import plotly
+#'
 
 # Define UI for application ---------------------------
 shinyAppUI <- dashboardPage(

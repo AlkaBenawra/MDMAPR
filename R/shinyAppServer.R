@@ -4,6 +4,7 @@
 #' @param output provided by shiny
 #'
 #' @importFrom shinyjs reset
+#'
 
 #Load library
 library(DT)
