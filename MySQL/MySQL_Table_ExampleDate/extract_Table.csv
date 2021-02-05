@@ -1,0 +1,15 @@
+extractID,replicateID,extractName,analyst,extractionDate,extractionTime,location,extractionMethod,methodCitation,extractionNotes,tubePlateID,frozen,fixed,dnaStorageLocation,extractMethodOfStorage,dnaVolume,quantificationMethod,concentration(ng/ul)
+1,1,A,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+2,2,F,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+3,3,K,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+4,4,P,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+5,5,U,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+6,6,Z,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+7,7,EE,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+8,8,JJ,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+9,9,OO,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+10,10,TT,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+11,11,YY,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+12,12,DDD,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+13,13,III,Jane Smith,2019-08-05,,,,,,,,,,,0,,0
+14,14,NNN,Jane Smith,2019-08-05,,,,,,,,,,,0,,0

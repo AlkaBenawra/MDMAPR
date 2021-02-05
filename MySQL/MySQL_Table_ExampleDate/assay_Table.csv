@@ -1,0 +1,2 @@
+assayID,taxonID,establishmentMeans,assayName,assayOwnership,assayDescription,assayCitation,assayDate,geneTarget,geneSymbol,dilutions,replicates,primerR,primerF,probe,ampliconLength (bp),probeFluorescentTag,dye(s),quencher,probeModification
+1,336262,Native,Limnotech_GS,,,,2018-02-02,Cytochrome c oxidase 1,COI,0,3,,,,,,,,MGB

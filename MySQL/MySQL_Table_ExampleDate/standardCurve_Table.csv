@@ -1,0 +1,3 @@
+standardCurveID,assayID,standardCurveName,SCdate,SCrecordedBy,SCdataNotes,LOD,LOQ
+1,1,Gizzard_Shad_Final_Curve_rawdata,2019-09-12,Danielle Bourque,,570,570
+2,2,Brook_Trout_SC,2020-08-02,Danielle Borque,Ran with 6 replicates,1330,1330
