@@ -9,9 +9,9 @@
 
 <img src="images/mdmaprlogo.png" width=400>
 
-The MDMAPR is a Shiny web application that is able to merge raw qPCR fluorescence data and metadata together to faciliate the spatial visualization of species presence/absence detections. The application also has the ability to visualize qPCR fluoresence curves and standard curves to evaluate data quality. 
+The MDMAPR is a Shiny web application that is able to merge raw qPCR fluorescence data and metadata together to facilitate the spatial visualization of species presence/absence detections. The application also has the ability to visualize qPCR fluorescence curves and standard curves to evaluate data quality. 
 
-The MDMAPR shiny application has the option to be connected to a custom developed MySQL database in order to populate the applications interface with data. Data can also be uploaded directly on the applications for analysis. The MDMAPR 2.0 is built using R shinydashboard which is an open-source R package for web application development.
+The MDMAPR shiny application has the option to be connected to a custom developed MySQL database in order to populate the applications interface with data. Data can also be uploaded directly on the application for analysis. The MDMAPR 2.0 is built using R shinydashboard which is an open-source R package for web application development.
 
 To learn how to set up a MDMAPR MySQL database to run with the MDMAPR Shiny application please refer to the [wiki](https://github.com/AlkaBenawra/MDMAPR/wiki).
 
@@ -57,7 +57,7 @@ library(MDMAPR)
 #Set dbInstance to yes
 dbInstance("Yes")
 
-#Enter database connection details in dbVariables
+#Enter database connection details in dbVariables (Note: the entries for each variable are examples. Please ensure the variables you enter in the dbVariables function reflect your database instance.)
 dbVariables(user = "root", password = "Test23!", dbname = 'MDMap_2.0', host = "127.0.0.1")
 
 #Launch app to run application
