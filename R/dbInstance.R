@@ -7,11 +7,15 @@
 #'
 #' @export
 #'
-#' @usage dbInstance("Yes")  or dbInstance("No")
+#' @usage dbInstance(x)
 #'
+#' @examples
+#' dbInstance("Yes")
+#' dbInstance("No")
+
 dbInstance <- function(x) {
   if (x == "Yes")
-  { db_int<<- "Yes"}
+  {assign("db_int", "Yes", envir = .GlobalEnv)}
   else
-  { db_int<<- "No"}
+  { assign("db_int", "No", envir = .GlobalEnv)}
 }

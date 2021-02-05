@@ -4,9 +4,11 @@ Title: Molecular Detection Mapping And Analysis Platform
 Version: 0.1.0
 Author: Alka Benawra <alkabenawra@rogers.com>
 Maintainer: Alka Benawra <alkabenawra@rogers.com>
-Description: The MDMAPR is an open-source tool to enable researchers to visualize qPCR data
-    and store it in a central location. This package implements the MDMAPR shiny app inside 
-    a package.
+Description: The Molecular Detection Mapping and Analysis Platform for R (MDMAPR), 
+    is an open-source tool to enable researchers to visualize qPCR data and
+    store it in a central standardized location. The system has the ability to implement 
+    an connect to a MySQL relational database to populate the applications interface. This 
+    package implements the MDMAPR shiny app inside  a package.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -30,8 +32,6 @@ Imports:
     writexl,
     xfun,
     berryFunctions,
-    backports,
-    vroom,
-    htmltools,
-    readr,
-    shinyWidgets
+    shinyWidgets,
+    shiny,
+    htmltools

@@ -8,13 +8,18 @@
 #'
 #' @export
 #'
-#' @usage dbVariables(user = "root", password = "Test123!", dbname = 'MDMap_2.0', host = "127.0.0.1")
+#' @usage dbVariables(user, password, dbname, host)
 #'
-
+#' @examples
+#'
+#' dbVariables(user = "root",
+#' password = "Test23!",
+#' dbname = 'MDMap_2.0',
+#' host = "127.0.0.1")
 
 dbVariables <- function(user, password, dbname, host) {
-  db_user <<- user
-  db_password <<- password
-  db_name <<- dbname
-  db_host <<- host
+  assign("db_user", user, envir = .GlobalEnv)
+  assign("db_password", password, envir = .GlobalEnv)
+  assign("db_name", dbname, envir = .GlobalEnv)
+  assign("db_host", host, envir = .GlobalEnv)
 }

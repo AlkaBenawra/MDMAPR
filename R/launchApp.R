@@ -6,11 +6,8 @@
 #'
 #' @return shiny application object
 #'
-#' @import shiny
-#'
 #' @usage launchApp()
 #'
-
 
 
 # wrapper for shiny::shinyApp()
