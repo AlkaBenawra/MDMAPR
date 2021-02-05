@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-<kbd><img src="Images/mdmaprlogo.jpg" width=600></kbd>
+<img src="images/mdmaprlogo.png" width=400>
 
 The MDMAPR application allows for the spatial visualization of run qPCR
 sample collection locations to reveal species presence/absence patterns.
@@ -42,7 +42,7 @@ library(MDMAPR)
 
 ## Mapping Dashboard
 
-<kbd><img src="Images/mapping_dashboard.png" width=600></kbd>
+<kbd><img src="images/mapping_dashboard.png" width=600></kbd>
 
 The Mapping Dashboard is used to perform geospatial analysis on qPCR run
 samples. On this page, an interactive map displays location markers for
@@ -57,7 +57,7 @@ Mapped Markers Metadata’ button.
 
 ## Data Overview Page
 
-<kbd><img src="Images/data_overview.png" width=600></kbd>
+<kbd><img src="images/data_overview.png" width=600></kbd>
 
 The Data Overview page is used to analyze individual tube/well samples
 and facilitates the quality control inspection of data. The page has
@@ -74,7 +74,7 @@ shows the plotted standard curve.
 
 ## Data Submission page
 
-<kbd><img src="Images/data_submission.png" width=600></kbd>
+<kbd><img src="images/data_submission.png" width=600></kbd>
 
 The Data Submission page is used to format raw qPCR fluorescence data
 and associated metadata into a format that is acceptable to be added to
