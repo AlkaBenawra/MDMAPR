@@ -4,7 +4,7 @@
 \alias{dbVariables}
 \title{Information needed to connect to local or remote database instance.}
 \usage{
-dbVariables(user = "root", password = "Test123!", dbname = 'MDMap_2.0', host = "127.0.0.1")
+dbVariables(user, password, dbname, host)
 }
 \arguments{
 \item{user}{defines username for database connection.}
@@ -20,4 +20,11 @@ function stores username, password, database name, and host name for database in
 }
 \details{
 dbVariables
+}
+\examples{
+
+dbVariables(user = "root",
+password = "Test23!",
+dbname = 'MDMap_2.0',
+host = "127.0.0.1")
 }
