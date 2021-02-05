@@ -7,14 +7,13 @@
 
 <!-- badges: end -->
 
-<kbd><img src="Images/mdmaprlogo.jpg" width=600></kbd>
+<img src="images/mdmaprlogo.png" width=400>
 
-The MDMAPR application allows for the spatial visualization of run qPCR
-sample collection locations to reveal species presence/absence patterns.
-The application has the ability to connect to a custom developed MySQL
-database in order to populate the applications interface with data. The
-user interface of the MDMAPR 2.0 is built using R shinydashboard which
-is an open-source R package for web application development.
+The MDMAPR is a Shiny web application that is able to merge raw qPCR fluorescence data and metadata together to faciliate the spatial visualization of species presence/absence detections. The application also has the ability to visualize qPCR fluoresence curves and standard curves to evaluate data quality. 
+
+The MDMAPR shiny application has the option to be connected to a custom developed MySQL database in order to populate the applications interface with data. Data can also be uploaded directly on the applications for analysis. The MDMAPR 2.0 is built using R shinydashboard which is an open-source R package for web application development.
+
+To learn how to set up a MDMAPR MySQL database to run with the MDMAPR Shiny application please refer to the [wiki](https://github.com/AlkaBenawra/MDMAPR/wiki).
 
 ## Installation
 
@@ -25,10 +24,7 @@ You can install the released version of MDMAPR from
 install.packages("MDMAPR")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
+## Example on how to run MDMAPR without database connection: 
 ``` r
 library(MDMAPR)
 #> Warning: replacing previous import 'ggplot2::last_plot' by 'plotly::last_plot'
@@ -38,11 +34,41 @@ library(MDMAPR)
 #> Warning: replacing previous import 'shiny::renderDataTable' by
 #> 'DT::renderDataTable' when loading 'MDMAPR'
 ## basic example code
+
+#Set dbInstance to no
+dbInstance("No")
+
+#Launch app to run application
+launchApp()
 ```
+
+
+## Example on how to run MDMAPR with database connection
+``` r
+library(MDMAPR)
+#> Warning: replacing previous import 'ggplot2::last_plot' by 'plotly::last_plot'
+#> when loading 'MDMAPR'
+#> Warning: replacing previous import 'shiny::dataTableOutput' by
+#> 'DT::dataTableOutput' when loading 'MDMAPR'
+#> Warning: replacing previous import 'shiny::renderDataTable' by
+#> 'DT::renderDataTable' when loading 'MDMAPR'
+## basic example code
+
+#Set dbInstance to yes
+dbInstance("Yes")
+
+#Enter database connection details in dbVariables
+dbVariables(user = "root", password = "Test23!", dbname = 'MDMap_2.0', host = "127.0.0.1")
+
+#Launch app to run application
+launchApp()
+
+```
+
 
 ## Mapping Dashboard
 
-<kbd><img src="Images/mapping_dashboard.png" width=600></kbd>
+<kbd><img src="images/mapping_dashboard.png" width=600></kbd>
 
 The Mapping Dashboard is used to perform geospatial analysis on qPCR run
 samples. On this page, an interactive map displays location markers for
@@ -57,7 +83,7 @@ Mapped Markers Metadata’ button.
 
 ## Data Overview Page
 
-<kbd><img src="Images/data_overview.png" width=600></kbd>
+<kbd><img src="images/data_overview.png" width=600></kbd>
 
 The Data Overview page is used to analyze individual tube/well samples
 and facilitates the quality control inspection of data. The page has
@@ -74,7 +100,7 @@ shows the plotted standard curve.
 
 ## Data Submission page
 
-<kbd><img src="Images/data_submission.png" width=600></kbd>
+<kbd><img src="images/data_submission.png" width=600></kbd>
 
 The Data Submission page is used to format raw qPCR fluorescence data
 and associated metadata into a format that is acceptable to be added to
