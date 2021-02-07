@@ -1,3 +1,25 @@
+#' @import RMySQL
+#' @import shinydashboard
+#' @importFrom DBI dbGetQuery
+#' @importFrom DT dataTableOutput
+#' @importFrom DT renderDataTable
+#' @importFrom DT datatable
+#' @import leaflet
+#' @import leaflet.extras
+#' @import shinyWidgets
+#' @importFrom shinyjs useShinyjs
+#' @importFrom shinyjs reset
+#' @import ggplot2
+#' @import dplyr
+#' @import readxl
+#' @import reactable
+#' @import writexl
+#' @importFrom xfun file_ext
+#' @importFrom berryFunctions is.error
+#' @import plotly
+#' @import htmltools
+#' @import shiny
+
 
 # Define UI for application ---------------------------
 shinyAppUI <- dashboardPage(
@@ -512,8 +534,8 @@ shinyAppUI <- dashboardPage(
                   width = 12,
 
                   #Header for page
-                  h1("MDMAPR", align = "Center",
-                     style = "font-size:30px;"),
+                  h1(strong("MDMAPR 2.0"), align = "Center",
+                     style = "font-size:50px;"),
 
                   br(),
 

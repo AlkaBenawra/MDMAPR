@@ -28,4 +28,5 @@ utils::globalVariables(c("db_int",
                           "Residual",
                           "LOD",
                           "LOQ",
-                          "cycles"))
+                          "cycles",
+                         "th.cyc"))
