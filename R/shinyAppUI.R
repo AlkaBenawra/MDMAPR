@@ -1,3 +1,61 @@
+#' @import RMySQL
+#' @import shinydashboard
+#' @importFrom DBI dbGetQuery
+#' @importFrom DT dataTableOutput
+#' @importFrom DT renderDataTable
+#' @importFrom DT datatable
+#' @import leaflet
+#' @import leaflet.extras
+#' @import shinyWidgets
+#' @importFrom shinyjs useShinyjs
+#' @importFrom shinyjs reset
+#' @import ggplot2
+#' @import dplyr
+#' @import readxl
+#' @import reactable
+#' @import writexl
+#' @importFrom xfun file_ext
+#' @importFrom berryFunctions is.error
+#' @import plotly
+#' @import htmltools
+#' @importFrom shiny div
+#' @importFrom shiny downloadHandler
+#' @importFrom shiny icon
+#' @importFrom shiny isolate
+#' @importFrom shiny need
+#' @importFrom shiny observe
+#' @importFrom shiny observeEvent
+#' @importFrom shiny reactive
+#' @importFrom shiny reactiveVal
+#' @importFrom shiny renderText
+#' @importFrom shiny req
+#' @importFrom shiny updateSelectInput
+#' @importFrom shiny updateSliderInput
+#' @importFrom shiny validate
+#' @importFrom shiny a
+#' @importFrom shiny actionButton
+#' @importFrom shiny br
+#' @importFrom shiny column
+#' @importFrom shiny downloadLink
+#' @importFrom shiny em
+#' @importFrom shiny fileInput
+#' @importFrom shiny fluidRow
+#' @importFrom shiny h1
+#' @importFrom shiny h3
+#' @importFrom shiny h4
+#' @importFrom shiny HTML
+#' @importFrom shiny icon
+#' @importFrom shiny numericInput
+#' @importFrom shiny p
+#' @importFrom shiny radioButtons
+#' @importFrom shiny selectInput
+#' @importFrom shiny sliderInput
+#' @importFrom shiny strong
+#' @importFrom shiny tabPanel
+#' @importFrom shiny tabsetPanel
+#' @importFrom shiny shinyApp
+#' @importFrom shiny textOutput
+
 
 # Define UI for application ---------------------------
 shinyAppUI <- dashboardPage(
@@ -512,8 +570,8 @@ shinyAppUI <- dashboardPage(
                   width = 12,
 
                   #Header for page
-                  h1("MDMAPR", align = "Center",
-                     style = "font-size:30px;"),
+                  h1(strong("MDMAPR 2.0"), align = "Center",
+                     style = "font-size:50px;"),
 
                   br(),
 
