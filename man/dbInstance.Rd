@@ -22,4 +22,5 @@ dbInstance
 \examples{
 dbInstance("Yes")
 dbInstance("No")
+
 }
