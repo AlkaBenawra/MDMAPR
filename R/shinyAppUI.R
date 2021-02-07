@@ -18,7 +18,43 @@
 #' @importFrom berryFunctions is.error
 #' @import plotly
 #' @import htmltools
-#' @import shiny
+#' @importFrom shiny div
+#' @importFrom shiny downloadHandler
+#' @importFrom shiny icon
+#' @importFrom shiny isolate
+#' @importFrom shiny need
+#' @importFrom shiny observe
+#' @importFrom shiny observeEvent
+#' @importFrom shiny reactive
+#' @importFrom shiny reactiveVal
+#' @importFrom shiny renderText
+#' @importFrom shiny req
+#' @importFrom shiny updateSelectInput
+#' @importFrom shiny updateSliderInput
+#' @importFrom shiny validate
+#' @importFrom shiny a
+#' @importFrom shiny actionButton
+#' @importFrom shiny br
+#' @importFrom shiny column
+#' @importFrom shiny downloadLink
+#' @importFrom shiny em
+#' @importFrom shiny fileInput
+#' @importFrom shiny fluidRow
+#' @importFrom shiny h1
+#' @importFrom shiny h3
+#' @importFrom shiny h4
+#' @importFrom shiny HTML
+#' @importFrom shiny icon
+#' @importFrom shiny numericInput
+#' @importFrom shiny p
+#' @importFrom shiny radioButtons
+#' @importFrom shiny selectInput
+#' @importFrom shiny sliderInput
+#' @importFrom shiny strong
+#' @importFrom shiny tabPanel
+#' @importFrom shiny tabsetPanel
+#' @importFrom shiny shinyApp
+#' @importFrom shiny textOutput
 
 
 # Define UI for application ---------------------------
