@@ -14,6 +14,7 @@
 #' @examples
 #' dbInstance("Yes")
 #' dbInstance("No")
+#'
 
 dbInstance <- function(x) {
   if (x == "Yes")
