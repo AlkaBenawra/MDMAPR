@@ -3271,7 +3271,15 @@ shinyAppServer <- function(input, output, session) {
 
   #Reset uploaded file input and selected machine type on data submission page
   observeEvent(input$DS_reset, {
-    shinyjs::reset("DS_platform")
+    updateSelectInput(session, "DS_platform",
+                      label = "qPCR Platform",
+                      choices = c("None",
+                                  "StepOnePlus",
+                                  "Biomeme two3/Franklin",
+                                  "MIC"),
+                      selected = "None")
+
+
     shinyjs::reset("DS_qpcr_file")
     shinyjs::reset("DS_metadata_file")
     shinyjs::reset("DS_standardCurve_fluorescence_file")})
