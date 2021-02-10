@@ -1,3 +1,6 @@
+#th.cyc() function is from the archieved R package chipPCR.
+#Citation: Roediger S and Burdukiewicz M (2014). chipPCR: Toolkit of helper functions to pre-process amplification data. R package version 0.0.8-4, <http://CRAN.R-project.org/package=chipPCR>.
+
 th.cyc <-
   function(x, y, r = 2500, auto = FALSE, linear = TRUE) {
 

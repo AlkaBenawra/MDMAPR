@@ -1,4 +1,5 @@
-#just for writing comfort, self explanatory
+#th class and method are from the archieved R package chipPCR.
+#Roediger S and Burdukiewicz M (2014). chipPCR: Toolkit of helper functions to pre-process amplification data. R package version 0.0.8-4, <http://CRAN.R-project.org/package=chipPCR>.
 setOldClass("summary.lm")
 
 
