@@ -29,4 +29,5 @@ utils::globalVariables(c("db_int",
                           "LOD",
                           "LOQ",
                           "cycles",
-                         "th.cyc"))
+                         "th.cyc",
+                         "Fluorescence"))

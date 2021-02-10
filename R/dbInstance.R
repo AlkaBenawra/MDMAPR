@@ -18,7 +18,10 @@
 
 dbInstance <- function(x) {
   if (x == "Yes")
-  {assign("db_int", "Yes", envir = .GlobalEnv)}
+  {assign("db_int", "Yes", envir = as.environment(pos))}
   else
-  { assign("db_int", "No", envir = .GlobalEnv)}
+  { assign("db_int", "No", envir = as.environment(pos))}
 }
+
+
+pos <- 1

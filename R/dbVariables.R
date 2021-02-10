@@ -20,8 +20,10 @@
 #' host = "127.0.0.1")
 
 dbVariables <- function(user, password, dbname, host) {
-  assign("db_user", user, envir = .GlobalEnv)
-  assign("db_password", password, envir = .GlobalEnv)
-  assign("db_name", dbname, envir = .GlobalEnv)
-  assign("db_host", host, envir = .GlobalEnv)
+  assign("db_user", user, envir = as.environment(pos))
+  assign("db_password", password, envir = as.environment(pos))
+  assign("db_name", dbname, envir = as.environment(pos))
+  assign("db_host", host, envir = as.environment(pos))
 }
+
+pos <- 1
