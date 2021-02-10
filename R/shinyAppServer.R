@@ -59,6 +59,7 @@
 #' @importFrom shiny tabsetPanel
 #' @importFrom shiny shinyApp
 #' @importFrom shiny textOutput
+#' @import methods
 
 
 shinyAppServer <- function(input, output, session) {
