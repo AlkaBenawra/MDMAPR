@@ -60,6 +60,18 @@
 #' @importFrom shiny shinyApp
 #' @importFrom shiny textOutput
 #' @import methods
+#' @importFrom utils read.csv
+#' @importFrom utils str
+#' @importFrom utils head
+#' @importFrom utils tail
+#' @importFrom utils zip
+#' @importFrom stats family
+#' @importFrom stats lm
+#' @importFrom stats mad
+#' @importFrom stats na.exclude
+#' @importFrom stats na.omit
+#' @importFrom stats quantile
+#' @importFrom stats residuals
 
 
 shinyAppServer <- function(input, output, session) {
@@ -2725,7 +2737,7 @@ shinyAppServer <- function(input, output, session) {
 
       #Create data frame for amplification curve
       amp_curve_data <- na.omit(as.data.frame(t(data[ , c(14:83)])))
-      colnames(amp_curve_data) <- "Fluorescence"
+      colnames(amp_curve_data)[1] <- "Fluorescence"
       amp_curve_data$cycles <- c(1:nrow(amp_curve_data))
 
 

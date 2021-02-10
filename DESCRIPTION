@@ -4,8 +4,8 @@ Title: Molecular Detection Mapping and Analysis Platform
 Version: 0.1.0
 Author: Alka Benawra <alkabenawra@rogers.com>
 Maintainer: Alka Benawra <alkabenawra@rogers.com>
-Description: The Molecular Detection Mapping and Analysis Platform for R (MDMAPR), 
-    is a Shiny web application to enable researchers to merge raw qPCR fluorescence data
+Description: The Molecular Detection Mapping and Analysis Platform for R ('MDMAPR'), 
+    is a Shiny web application to enable researchers to merge raw 'qPCR' fluorescence data
     and metadata to visualize species presence/absence detection patterns. The system has 
     the ability to connect to a custom developed MySQL database to populate the 
     applications interface. This package implements the MDMAPR shiny app inside a package.
@@ -34,4 +34,6 @@ Imports:
     shinyWidgets,
     shiny,
     htmltools,
-    methods
+    methods,
+    utils,
+    stats
