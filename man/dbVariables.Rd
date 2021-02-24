@@ -2,9 +2,8 @@
 % Please edit documentation in R/dbVariables.R
 \name{dbVariables}
 \alias{dbVariables}
-\title{Information needed to connect to local or remote MDMAPR MySQL database instance.
-Please ensure dbInstance()  is set to "Yes" if you are running the application
-with a database connection.}
+\title{Information needed to connect to a local or remote MDMAPR MySQL database
+instance.}
 \usage{
 dbVariables(user, password, dbname, host)
 }
@@ -17,9 +16,13 @@ dbVariables(user, password, dbname, host)
 
 \item{host}{defines host name for database connection.}
 }
+\value{
+No return value.
+}
 \description{
-function stores username, password, database name, and host name for
-database instance to connect to.
+Function stores username, password, database name, and host name for
+database instance to connect to. Please ensure dbInstance()  is set to "Yes" if you
+are running the application with a database connection.
 }
 \details{
 dbVariables
