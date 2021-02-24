@@ -27,13 +27,6 @@ install.packages("MDMAPR")
 ## Example on how to run MDMAPR without database connection: 
 ``` r
 library(MDMAPR)
-#> Warning: replacing previous import 'ggplot2::last_plot' by 'plotly::last_plot'
-#> when loading 'MDMAPR'
-#> Warning: replacing previous import 'shiny::dataTableOutput' by
-#> 'DT::dataTableOutput' when loading 'MDMAPR'
-#> Warning: replacing previous import 'shiny::renderDataTable' by
-#> 'DT::renderDataTable' when loading 'MDMAPR'
-## basic example code
 
 #Set dbInstance to no
 dbInstance("No")
@@ -46,13 +39,6 @@ launchApp()
 ## Example on how to run MDMAPR with database connection
 ``` r
 library(MDMAPR)
-#> Warning: replacing previous import 'ggplot2::last_plot' by 'plotly::last_plot'
-#> when loading 'MDMAPR'
-#> Warning: replacing previous import 'shiny::dataTableOutput' by
-#> 'DT::dataTableOutput' when loading 'MDMAPR'
-#> Warning: replacing previous import 'shiny::renderDataTable' by
-#> 'DT::renderDataTable' when loading 'MDMAPR'
-## basic example code
 
 #Set dbInstance to yes
 dbInstance("Yes")
