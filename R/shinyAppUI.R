@@ -1,6 +1,3 @@
-
-
-
 # Define UI for application ---------------------------
 shinyAppUI <- dashboardPage(
 

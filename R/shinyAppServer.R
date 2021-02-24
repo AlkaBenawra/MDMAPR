@@ -6,8 +6,10 @@
 #' @importFrom DT datatable
 #' @import leaflet
 #' @import leaflet.extras
-#' @import shinyWidgets
+#' @importFrom shinyWidgets pickerInput
+#' @importFrom shinyWidgets updatePickerInput
 #' @importFrom shinyjs reset
+#' @importFrom shinyjs alert
 #' @importFrom shinyjs useShinyjs
 #' @import ggplot2
 #' @import dplyr
@@ -939,6 +941,251 @@ shinyAppServer <- function(input, output, session) {
 
 
 
+  #Function to give pop-up validation messages for uploaded fluorescence file.
+  fluorescence_file_validation_msgs <- function(flur_file) {
+
+    if (file_ext(flur_file$datapath) %ni% c("csv", "xlsx", "xls"))
+    {shinyjs::alert("ERROR: Fluorescence file is not an accepted file type.")}
+
+    else {shinyjs::alert("Successful file upload.")}
+
+  }
+
+
+  #Function to give pop-up validation messages for uploaded metatdata file.
+  metadata_file_validation_msgs <- function(meta_file){
+
+    if (file_ext(meta_file$datapath) %ni% c("xlsx", "xls"))
+    {shinyjs::alert("ERROR: Metadata file is not an accepted file type.")}
+
+    #Check how many sheets are in uploaded metadata file
+    else if (length(excel_sheets(meta_file$datapath)) < 5)
+    {shinyjs::alert("ERROR: Incorrect Metadata template used.")}
+
+
+    #Checks to see if any of the sheets are empty (i.e: only contain field names)
+    else if (nrow(read_excel(meta_file$datapath, sheet = 1)) == 0 |
+             nrow(read_excel(meta_file$datapath, sheet = 2)) == 0 |
+             nrow(read_excel(meta_file$datapath, sheet = 3)) == 0 |
+             nrow(read_excel(meta_file$datapath, sheet = 4)) == 0 |
+             nrow(read_excel(meta_file$datapath, sheet = 5)) == 0)
+    {shinyjs::alert("ERROR: One or more required sheets on Metadata file is empty.")}
+
+
+    #Check is metadata parsing function works on file
+    else if (is.error(format_qPCR_metadata(meta_file$datapath)) == TRUE)
+    {shinyjs::alert("ERROR: Metadata file is missing one or more necessary columns.")}
+
+
+    else {shinyjs::alert("Successful file upload.")}}
+
+
+  #Function to give pop-up validation messages for fluorescence file and metadata file based on selected machine type.
+  selected_platform_validation_msgs <- function(flur_file, meta_file, platform){
+
+    #If files are MIC
+    if (platform == "MIC")
+
+    {if (file_ext(flur_file$datapath) != "csv")
+    {shinyjs::alert("ERROR: MIC fluorescence file must be csv.")}
+
+
+      #check if fluorescence file if biomeme file
+      else if (read.csv(flur_file$datapath)[1, 1] == 'Date & Time')
+      {shinyjs::alert("ERROR: Fluorescence file is not correct file type for MIC platform.")}
+
+
+      #Check is fluorescence file processing  function work
+      else if (is.error(process_MIC_uploaded_file(read.csv(flur_file$datapath))) == TRUE)
+      {return(shinyjs::alert("ERROR: Fluorescence file is not correct file type for MIC platform."))}
+
+
+      #Check that formatted fluorescence file and formatted metadata file have the same number of rows
+      else if (nrow(process_MIC_uploaded_file(read.csv(flur_file$datapath))) != nrow(format_qPCR_metadata(meta_file$datapath)))
+      {shinyjs::alert("ERROR: Fluorescence file and metadata file have information for different number of wells.")}
+
+      else {shinyjs::alert("Successful platform selected.")}}
+
+
+
+    else if (platform == "StepOnePlus")
+
+    {if (file_ext(flur_file$datapath) %ni% c("xlsx", "xls"))
+    {shinyjs::alert("ERROR: Step One Plus fluorescence file must be xlsx/xls.")}
+
+      #Check is fluorescence file processingfunction work
+      else if (is.error(process_SOP_uploaded_file(read_excel(flur_file$datapath, 4))) == TRUE)
+      {return(shinyjs::alert("ERROR: Fluorescence file is not correct file type for Step One Plus platform."))}
+
+      #Check that formatted fluorescence file and formatted metadata file have the same number of rows
+      else if (nrow(process_SOP_uploaded_file(read_excel(flur_file$datapath, sheet = 4))) != nrow(format_qPCR_metadata(meta_file$datapath)))
+      {shinyjs::alert("ERROR: Fluorescence file and metadata file have information for different number of wells.")}
+
+      else {shinyjs::alert("Successful platform selected.")}}
+
+
+
+    #If files are Biomeme two3/Franklin
+    else if (platform == "Biomeme two3/Franklin")
+
+    {if (file_ext(flur_file$datapath) != "csv")
+    {shinyjs::alert("ERROR: Biomeme two3/Franklin fluorescence file must be csv.")}
+
+
+      #Check is fluorescence file processing  function work
+      else if (is.error(process_biomeme23_uploaded_file(read.csv(flur_file$datapath))) == TRUE)
+      {return(shinyjs::alert("ERROR: Fluorescence file is not correct file type for Biomeme two3/Franklin platform."))}
+
+
+      #Check that formatted fluorescence file and formatted metadata file have the same number of rows
+      else if (nrow(process_biomeme23_uploaded_file(read.csv(flur_file$datapath))) != nrow(format_qPCR_metadata(meta_file$datapath)))
+      {shinyjs::alert("ERROR: Fluorescence file and metadata file have information for different number of wells.")}
+
+      else {shinyjs::alert("Successful platform selected.")}}
+
+
+    #qPCR platform not selected
+    else {
+      #shinyjs::alert("Please select qPCR platform type.")
+    }
+
+  }
+
+
+
+  #Function to give pop-up validation messages for fluorescence file,standard curve fluorescence file, and metadata file based on selected machine type
+  selected_platform_validation_msgs_SC_and_Experimental_flur <- function(flur_file, SC_flur_file, meta_file, platform) {
+
+    #If files are MIC
+    if (platform == "MIC") {
+
+
+      if (file_ext(flur_file$datapath) != "csv")
+      {shinyjs::alert("ERROR: MIC fluorescence file must be csv.")}
+
+
+      else if (file_ext(SC_flur_file$datapath) != "csv")
+      {shinyjs::alert("ERROR: MIC standard curve fluorescence file must be csv.")}
+
+
+      #check if fluorescence file if biomeme file
+      else if (read.csv(flur_file$datapath)[1, 1] == 'Date & Time')
+      {shinyjs::alert("ERROR: Fluorescence file is not correct file type for MIC platform.")}
+
+
+      #check if standard curve fluorescence file if biomeme file
+      else if (read.csv(SC_flur_file$datapath)[1, 1] == 'Date & Time')
+      {shinyjs::alert("ERROR: Standard curve fluorescence file is not correct file type for MIC platform.")}
+
+
+      #Check if fluorescence file processing function work
+      else if (is.error(process_MIC_uploaded_file(read.csv(flur_file$datapath))) == TRUE)
+      {return(shinyjs::alert("ERROR: Fluorescence file is not correct file type for MIC platform."))}
+
+      #Check if  fluorescence file processing function work on standard curve fluorescence
+      else if (is.error(process_MIC_uploaded_file(read.csv(SC_flur_file$datapath))) == TRUE)
+      {return(shinyjs::alert("ERROR: Standard curve fluorescence file is not correct file type for MIC platform."))}
+
+
+      #Check that formatted fluorescence file and formatted metadata file have the same number of rows
+      else if (nrow(process_MIC_uploaded_file(read.csv(flur_file$datapath))) != nrow(format_qPCR_metadata(meta_file$datapath)))
+      {shinyjs::alert("ERROR: Fluorescence file and metadata file have information for different number of wells.")}
+
+
+      #Check that standard curve formatting function works on metadata
+      else if(is.error(format_standardCurve_metadata(read_xlsx(meta_file$datapath, sheet = 5))) == TRUE)
+      {shinyjs::alert("ERROR: Error in standardCurveResults_Table in Metadata file.")}
+
+
+      #Check that standard curve fluorescence data and standard curve data have information for same number of wells
+      else if(nrow(process_MIC_uploaded_file(read.csv(SC_flur_file$datapath))) != nrow(format_standardCurve_metadata(read_xlsx(meta_file$datapath, sheet = 5))))
+      {shinyjs::alert("ERROR: Standard curve fluorescence file and metadata file have information for different number of wells.")}
+
+      else {shinyjs::alert("Successful platform selected.")}}
+
+
+    else if (platform == "StepOnePlus"){
+
+      if (file_ext(flur_file$datapath) %ni% c("xlsx", "xls"))
+      {shinyjs::alert("ERROR: Step One Plus fluorescence file must be xlsx/xls.")}
+
+
+      else if (file_ext(SC_flur_file$datapath) %ni% c("xlsx", "xls"))
+      {shinyjs::alert("ERROR:Step One Plus standard curve fluorescence file must be xlsx/xls.")}
+
+
+      #Check is fluorescence file processing function works
+      else if (is.error(process_SOP_uploaded_file(read_excel(flur_file$datapath, 4))) == TRUE)
+      {return(shinyjs::alert("ERROR: Fluorescence file is not correct file type for Step One Plus platform."))}
+
+
+      #Check if fluorescence file processing function works on standard curve fluorescence
+      else if (is.error(process_SOP_uploaded_file(read_excel(SC_flur_file$datapath, 4))) == TRUE)
+      {return(shinyjs::alert("ERROR: Fluorescence file is not correct file type for Step One Plus platform."))}
+
+
+      #Check that formatted fluorescence file and formatted metadata file have the same number of rows
+      else if (nrow(process_SOP_uploaded_file(read_excel(flur_file$datapath, sheet = 4))) != nrow(format_qPCR_metadata(meta_file$datapath)))
+      {shinyjs::alert("ERROR: Fluorescence file and metadata file have information for different number of wells")}
+
+
+      #check standard curve formatting function works on metadata
+      else if(is.error(format_standardCurve_metadata(read_xlsx(meta_file$datapath, sheet = 5))) == TRUE)
+      {shinyjs::alert("ERROR: Error in standardCurveResults_Table in Metadata file.")}
+
+
+      #check that formatted standard curve fluorescene data and formatted standard curve metadata have same number of rows
+      else if(nrow(process_SOP_uploaded_file(read_excel(flur_file$datapath, sheet = 4))) != nrow(format_standardCurve_metadata(read_xlsx(meta_file$datapath, sheet = 5))))
+      {shinyjs::alert("ERROR: Standard curve fluorescence file and metadata file have information for different number of wells.")}
+
+
+      else {shinyjs::alert("Successful platform selected.")}}
+
+
+    #If files are Biomeme two3/Franklin
+    else if (platform == "Biomeme two3/Franklin") {
+      if (file_ext(flur_file$datapath) != "csv")
+      {shinyjs::alert("ERROR:Biomeme two3/Franklin fluorescence file must be csv.")}
+
+
+      else if (file_ext(SC_flur_file$datapath) != "csv")
+      {shinyjs::alert("ERROR:Biomeme two3/Franklin standard curve fluorescence file must be csv.")}
+
+
+      #Check if fluorescence file processing function works
+      else if (is.error(process_biomeme23_uploaded_file(read.csv(flur_file$datapath))) == TRUE)
+      {return(shinyjs::alert("ERROR: Fluorescence file not correct file type for Biomeme two3/Franklin platform."))}
+
+
+      #Check if fluorescence file processing  function work on standard curve fluorescence
+      else if (is.error(process_biomeme23_uploaded_file(read.csv(SC_flur_file$datapath))) == TRUE)
+      {return(shinyjs::alert("ERROR: Standard curve fluorescence file not correct file type for Biomeme two3/Franklin platform."))}
+
+
+      #Check that formatted fluorescence file and formatted metadata file have the same number of rows
+      else if (nrow(process_biomeme23_uploaded_file(read.csv(flur_file$datapath))) != nrow(format_qPCR_metadata(meta_file$datapath)))
+      {shinyjs::alert("ERROR: Fluorescence file and metadata file have information for different number of wells.")}
+
+
+      #Check that standard curve formatting function works on metadata
+      else if(is.error(format_standardCurve_metadata(read_xlsx(meta_file$datapath, sheet = 5))) == TRUE)
+      {shinyjs::alert("ERROR: Error in standardCurveResults_Table in Metadata file.")}
+
+
+      #Check that standard curve fluorescence data and standard curve data have information for same number of wells
+      else if(nrow(process_biomeme23_uploaded_file(read.csv(SC_flur_file$datapath))) != nrow(format_standardCurve_metadata(read_xlsx(meta_file$datapath, sheet = 5))))
+      {shinyjs::alert("ERROR: Standard curve fluorescence file and metadata file have information for different number of wells.")}
+
+
+      else {shinyjs::alert("Successful platform selected.")}}
+
+
+    #qPCR platform not selected
+    else {
+      #shinyjs::alert("Please select qPCR platform type")
+    }}
+
+
   #Data Analysis Functions for Mapping Dashboard and Fata Overview page  ---------------------------
 
   #Function is used to calculated Cq value from a set of fluorescence data
@@ -1586,6 +1833,22 @@ shinyAppServer <- function(input, output, session) {
 
 
 
+
+  #Pop-up validation messages for uploaded fluorescence file.
+  observeEvent(input$qpcr_file,fluorescence_file_validation_msgs(input$qpcr_file))
+
+
+  #Pop-up validation messages for uploaded metadata file,
+  observeEvent(input$metadata_file, metadata_file_validation_msgs(input$metadata_file))
+
+
+  #Pop-up validation messages for uploaded uploaded fluorescence and metadata file, based on machine type.
+  observeEvent(req(input$qpcr_file, input$metadata_file,input$platform),
+               selected_platform_validation_msgs(input$qpcr_file,
+                                                 input$metadata_file,
+                                                 input$platform))
+
+
   #Function process the user uploaded fluorescence file and metadata file to be analyzed on the mapping dashboard. The MDMAPR currently accepts fluorescence files from the following qPCR platforms: MIC, StepOnePlus and Biomeme23/Franklin.
 
   #initalize uploaded_data reactive variable
@@ -2135,15 +2398,6 @@ shinyAppServer <- function(input, output, session) {
     else {
 
       shinyjs::reset("platform")
-      updateSelectInput(session,
-                        inputId = "platform",
-                        label = "qPCR Platform",
-                        choices = c("None",
-                                    "StepOnePlus",
-                                    "Biomeme two3/Franklin",
-                                    "MIC"),
-                  selected = "None")
-
       shinyjs::reset("qpcr_file")
       shinyjs::reset("metadata_file")
       shinyjs::reset("range") #ct range slider
@@ -2175,6 +2429,31 @@ shinyAppServer <- function(input, output, session) {
 
 
   #qPCR Data Overview page ---------------------------
+
+  #Uploaded file validation
+  #Return popup message regarding uploaded fluorescence file.
+  observeEvent(input$qPCR_fluorescence_file,
+               fluorescence_file_validation_msgs(input$qPCR_fluorescence_file))
+
+  #Return popup message regarding uploaded standard curve fluorescence file.
+  observeEvent(input$SC_fluorescence_file,
+               fluorescence_file_validation_msgs(input$SC_fluorescence_file))
+
+  #Return popup messaged regarding uploaded metadata file.
+  observeEvent(input$qPCR_metadata_file,
+               metadata_file_validation_msgs(input$qPCR_metadata_file))
+
+  #Return popup messaged regarding uploaded fluorescence and metadata file, based on machine type.
+  observeEvent(req(input$qPCR_fluorescence_file,
+                   input$SC_fluorescence_file,
+                   input$qPCR_metadata_file,
+                   input$DA_platform),
+
+               selected_platform_validation_msgs_SC_and_Experimental_flur(input$qPCR_fluorescence_file,
+                                                                          input$SC_fluorescence_file,
+                                                                          input$qPCR_metadata_file,
+                                                                          input$DA_platform))
+
 
   #Process user uploaded standard curve data
   user_uploaded_standard_curve_data <-  reactive({
@@ -2737,7 +3016,7 @@ shinyAppServer <- function(input, output, session) {
 
       #Create data frame for amplification curve
       amp_curve_data <- na.omit(as.data.frame(t(data[ , c(14:83)])))
-      colnames(amp_curve_data)[1] <- "Fluorescence"
+      colnames(amp_curve_data) <- "Fluorescence"
       amp_curve_data$cycles <- c(1:nrow(amp_curve_data))
 
 
@@ -2807,15 +3086,7 @@ shinyAppServer <- function(input, output, session) {
                  shinyjs::reset("SC_metadata_file") #reset uploaded standard curve metadata file
                  shinyjs::reset("qPCR_fluorescence_file") #reset uploaded qPCR fluorescene file
                  shinyjs::reset("qPCR_metadata_file") #reset uploaded qPCR metadata file
-
-                 updateSelectInput(session,
-                                   "DA_platform",
-                                   label = "qPCR Platform",
-                                   choices = c("None",
-                                               "StepOnePlus",
-                                               "Biomeme two3/Franklin",
-                                               "MIC"),
-                                   selected = "None") #reset selected platform
+                 shinyjs::reset("DA_platform") #reset selected platform
                })
 
 
@@ -2832,6 +3103,32 @@ shinyAppServer <- function(input, output, session) {
 
 
   #Data Submission Page   ---------------------------
+
+  #Return popup messaged regarding uploaded fluorescence file
+  observeEvent(input$DS_qpcr_file,
+               fluorescence_file_validation_msgs(input$DS_qpcr_file))
+
+
+  #Return popup messaged regarding uploaded standard curve fluorescence file
+  observeEvent(input$DS_standardCurve_fluorescence_file,
+               fluorescence_file_validation_msgs(input$DS_standardCurve_fluorescence_file))
+
+
+  #Return popup messaged regarding uploaded metadata file file
+  observeEvent(input$DS_metadata_file,
+               metadata_file_validation_msgs(input$DS_metadata_file))
+
+
+  #Return popup messaged regarding uploaded fluorescence and metadata file, based on machine type.
+  observeEvent(req(input$DS_qpcr_file,
+                   input$DS_standardCurve_fluorescence_file,
+                   input$DS_metadata_file,
+                   input$DS_platform),
+
+               selected_platform_validation_msgs_SC_and_Experimental_flur(input$DS_qpcr_file,
+                                                                          input$DS_standardCurve_fluorescence_file,
+                                                                          input$DS_metadata_file,
+                                                                          input$DS_platform))
 
   #Validate messaged based on uploaded data on Data Submission page.
   DS_error_message <- reactive({
@@ -3364,15 +3661,7 @@ shinyAppServer <- function(input, output, session) {
 
   #Reset uploaded file input and selected machine type on data submission page
   observeEvent(input$DS_reset, {
-    updateSelectInput(session, "DS_platform",
-                      label = "qPCR Platform",
-                      choices = c("None",
-                                  "StepOnePlus",
-                                  "Biomeme two3/Franklin",
-                                  "MIC"),
-                      selected = "None")
-
-
+    shinyjs::reset("DS_platform")
     shinyjs::reset("DS_qpcr_file")
     shinyjs::reset("DS_metadata_file")
     shinyjs::reset("DS_standardCurve_fluorescence_file")})
@@ -3540,4 +3829,3 @@ shinyAppServer <- function(input, output, session) {
 
 
 }
-
