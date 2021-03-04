@@ -23,17 +23,3 @@ data for each reaction cycle. The table is written to the local machine director
 file. The formatted data can be copied and pasted into the results_Table or
 standardCurveResults_Table, which are used in the MDMAPR 2.0 MySQL database.
 }
-\examples{
-formatRawFluorescenceFile("MIC_fluorescence_data.csv",
-                          "MIC",
-                          "formatted_MIC_data.csv")
-
-formatRawFluorescenceFile("StepOnePlus_fluorescence_data.xls",
-                          "StepOnePlus",
-                          "formatted_StepOnePlus_data.csv")
-
-formatRawFluorescenceFile("Biomemetwo3_fluorescence_data.csv",
-                          "Biomeme two3/Franklin",
-                          "formatted_biomemetwo3_data.csv")
-
-}

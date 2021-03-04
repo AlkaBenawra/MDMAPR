@@ -13,19 +13,8 @@
 #' @return Writes CSV file to local directory.
 #' @export
 #'
-#' @examples
-#' formatRawFluorescenceFile("MIC_fluorescence_data.csv",
-#'                           "MIC",
-#'                           "formatted_MIC_data.csv")
-#'
-#' formatRawFluorescenceFile("StepOnePlus_fluorescence_data.xls",
-#'                           "StepOnePlus",
-#'                           "formatted_StepOnePlus_data.csv")
-#'
-#' formatRawFluorescenceFile("Biomemetwo3_fluorescence_data.csv",
-#'                           "Biomeme two3/Franklin",
-#'                           "formatted_biomemetwo3_data.csv")
-#'
+#' @usage formatRawFluorescenceFile(rawFluorescenceFile, platform, outputFileName)
+
 
 formatRawFluorescenceFile <-function(rawFluorescenceFile, platform, outputFileName){
 
@@ -103,12 +92,9 @@ formatRawFluorescenceFile <-function(rawFluorescenceFile, platform, outputFileNa
 #'
 #' @export
 #'
-#' @examples
-#' addThresholdCq("results_Table", "Yes")
-#' addThresholdCq("results_Table", "No")
-#' addThresholdCq("standardCurveResults_Table", "Yes")
-#' addThresholdCq("standardCurveResults_Table", "No")
-#'
+#' @usage addThresholdCq(file, calculateUserProvidedCq)
+
+
 
 addThresholdCq <- function(file, calculateUserProvidedCq){
   if (calculateUserProvidedCq == "Yes") {

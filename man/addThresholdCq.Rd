@@ -22,10 +22,3 @@ results_Table or standardCurveResults_Table files. User can also add userProvide
 file by setting calculateUserProvidedCq parameter to "Yes". If user wants system to calculate
 userProvidedCqValue they must provide userProvidedThresholdValue's.
 }
-\examples{
-addThresholdCq("results_Table", "Yes")
-addThresholdCq("results_Table", "No")
-addThresholdCq("standardCurveResults_Table", "Yes")
-addThresholdCq("standardCurveResults_Table", "No")
-
-}
