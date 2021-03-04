@@ -67,13 +67,17 @@ shinyAppUI <- dashboardPage(
 
                   column(width = 12,
                          box(width = NULL, solidHeader = TRUE,
-                             leafletOutput("mymap", height = 400),
+                             leafletOutput("mymap", height = 460),
 
                              #Second Row on page for filter functions
                              fluidRow(
-                               column(2,
 
-                                      h4("Filter Options"),
+                               div(style='height:300px; overflow-y: scroll',
+                                   box( width = 12,
+                                        title = "Filter Options",
+                                        status = "warning",
+                                        solidHeader = TRUE,
+                               column(2,
 
                                       #Radio button to select what type of Cq value you want to based on threshold vaue (User provided or system calculated)
                                       radioButtons("thresholdValueButton",
@@ -134,8 +138,6 @@ shinyAppUI <- dashboardPage(
                                ),
 
                                column(4, offset = 1,
-
-                                      h4("    ."),
 
 
                                       #Dropdown menu for family type
@@ -250,7 +252,7 @@ shinyAppUI <- dashboardPage(
                                                column(4, actionButton("reset",
                                                                       "Reset Files"))))
 
-                             ))))),
+                             ))))))),
 
               #Download Mapped data
               fluidRow(p(strong("Mapped Markers Metadata"),
@@ -598,7 +600,7 @@ shinyAppUI <- dashboardPage(
                                style = "font-size:30px; font-family: 'Verdana', 'Geneva', sans-serif;"),
                 solidHeader = TRUE,
                 width = 12,
-                p("To learn more about the MDMAPR 2.0 application and view the applications code please visit the ", tags$a(href="https://github.com/AlkaBenawra/MDMAPR_2.0.git", "MDMAPR 2.0 GitHub page."),
+                p("To learn more about the MDMAPR 2.0 application and view the applications code please visit the ", tags$a(href="https://github.com/AlkaBenawra/MDMAPR", "MDMAPR 2.0 GitHub page."),
                   align = "justify",
                   style = "font-size:16px; font-family: 'Arial', 'Helvetica', sans-serif;"))),),
 
@@ -655,7 +657,7 @@ shinyAppUI <- dashboardPage(
                 collapsed = TRUE,
                 width = 12,
                 p("To learn how to fill in the MDMAPR 2.0 Metadata Template please visit the ",
-                  tags$a(href="https://github.com/AlkaBenawra/MDMAPR_2.0.git", "MDMAPR 2.0 GitHub page."),  "The 'Metadata_Template' folder contains instructions on how to fill in the Metadata template excel file (Instructions.md) and has a complete guide with descriptions for each field in the metadata template (Metadata_Template_Column_Descriptions_09052020.xlsx).",  style = "font-size:16px;" ),
+                  tags$a(href="https://github.com/AlkaBenawra/MDMAPR", "MDMAPR 2.0 GitHub page."),  "The wiki page contains instructions on how to fill in the Metadata template excel file and has a complete guide with descriptions for each field in the metadata template.",  style = "font-size:16px;" ),
 
                 downloadLink("downloadTemplate",
                              p("Click Here to Download the Metadata Template",
@@ -675,7 +677,7 @@ shinyAppUI <- dashboardPage(
                 collapsed = TRUE,
                 width = 12,
                 p("To learn more about the MDMAPR 2.0 application visit the",
-                  tags$a(href="https://github.com/AlkaBenawra/MDMAPR_2.0.git",
+                  tags$a(href="https://github.com/AlkaBenawra/MDMAPR",
                          "MDMAPR 2.0 GitHub page."), style = "font-size:16px;" )))),
 
 
@@ -706,7 +708,9 @@ shinyAppUI <- dashboardPage(
                 collapsible = TRUE,
                 collapsed = TRUE,
                 width = 12,
-                p("No, data uploaded onto the application is not stored in the MDMAPR 2.0 database. If you would like more information on how to store data in the MDMAPR 2.0 database please refer to the MDMAPR 2.0 GitHub website.", style = "font-size:16px;"))),
+                p("No, data uploaded onto the application is not stored in the MDMAPR 2.0 database. If you would like more information on how to store data in the MDMAPR 2.0 database please refer to the",
+                  tags$a(href="https://github.com/AlkaBenawra/MDMAPR",
+                         "MDMAPR 2.0 GitHub page."), style = "font-size:16px;"))),
 
 
               fluidRow(box(

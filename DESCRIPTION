@@ -1,7 +1,7 @@
 Package: MDMAPR
 Type: Package
-Title: Molecular Detection Mapping and Analysis Platform 
-Version: 0.1.0
+Title: Molecular Detection Mapping and Analysis Platform for R
+Version: 0.2.0
 Author: Alka Benawra <alkabenawra@rogers.com>
 Maintainer: Alka Benawra <alkabenawra@rogers.com>
 Description: Runs a Shiny web application that merges raw 'qPCR' fluorescence data with related 
