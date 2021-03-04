@@ -2,7 +2,7 @@
 % Please edit documentation in R/launchApp.R
 \name{launchApp}
 \alias{launchApp}
-\title{Launch the MDMAPR app}
+\title{Launch the MDMAPR app.}
 \usage{
 launchApp()
 }
